@@ -9,7 +9,10 @@
     var CardDesk = function (params) {
         params.cards = params.cards || [];
         this.prototype.call(this, params);
-    };
+    },
+        allCardTypes,
+        allCardSuits,
+        allCards;
     CardDesk.prototype = Object.create(Model.prototype, {
         constructor: {
             value: CardDesk,
@@ -48,6 +51,16 @@
         }
         this.cards = this.cards.concat(cards);
     };
+    function getRandomInt(min, max)
+    {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    /**
+     * Перемешать
+     */
+    CardDesk.prototype.mix = function () {
+
+    };
     /**
      * Находим индексы максимальных карт
      * @returns {number[]}
@@ -67,5 +80,47 @@
         });
         return maxs;
     };
+
+    allCardTypes = [CardType.Two,
+            CardType.Three,
+            CardType.Four,
+            CardType.Five,
+            CardType.Six,
+            CardType.Seven,
+            CardType.Eight,
+            CardType.Nine,
+            CardType.Ten,
+            CardType.Jack,
+            CardType.Queen,
+            CardType.King,
+            CardType.Ace
+        ];
+    allCardSuits = [
+            CardSuit.Hearts,
+            CardSuit.Diamonds,
+            CardSuit.Clubs,
+            CardSuit.Spades
+        ];
+    allCards = [];
+    allCardSuits.forEach(function(cardSuit) {
+        allCardTypes.forEach(function(cardType){
+            allCards.push(new Card({
+                type: cardType,
+                suit: cardSuit
+            }))
+        })
+    });
+    allCards.push(new Card({
+        type: CardType.RedJoker
+    }));
+    allCards.push(new Card({
+        type: CardType.BlackJoker
+    }));
+
+
+    CardDesk.getCardDesk52 = function () {
+        return allCards;
+    };
+
     toExport.CardDesk = CardDesk;
 }(window));

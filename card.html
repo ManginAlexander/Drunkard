@@ -2,170 +2,38 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="card.css">
-    <script src="http://yandex.st/jquery/2.0.3/jquery.js"></script>
     <meta charset="utf-8"/>
     <title></title>
 </head>
 <body>
-    <div class="row">
-        <div class="avatar"> Моя любимая аватарка </div>
-        <div class="avatar"> Моя любимая аватарка2 </div>
+    <div class= "cardDesk-container">
+
     </div>
-    <div class="row">
-        <div class="title">
-            Тут лежат карты игроков
-        </div>
-        <div class="cardDesk-container">
-            <div class="card-container">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-        </div>
-        <div class="cardDesk-container" >
-            <div class="card-container cardInCardDesk">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
+    <div class="card-container">
+        <div class="card-face"></div>
+        <div class="card-shirt"></div>
+    </div>
+
+    <div id="playerCardDesks" class="row">
+        <div class=".title">
+            Карты игроков
         </div>
     </div>
     <div class="row">
-        <div class="title">
-            Место сражения
-        </div>
-        <div class="cardDesk-container playersCardDesk">
-            <div class="card-container">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-        </div>
-        <div class="cardDesk-container" >
-            <div class="card-container cardInCardDesk">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
+        <div class=".title">
+            Поле битвы игроков
         </div>
     </div>
-    <div class="row">
-        <div class="title">
-            Место приза
-        </div>
-        <div class="cardDesk-container playersCardDesk">
-            <div class="card-container">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-        </div>
-        <div class="cardDesk-container" >
-            <div class="card-container cardInCardDesk">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop20px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-            <div class="card-container cardInCardDesk leftTop40px">
-                <div class = "card-face">
-                    Лицо</div>
-                <div class = "card-shirt">
-                    Рубашка
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <input type=button value="Начать"/>
-    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <script src="http://yandex.st/jquery/2.0.3/jquery.js"></script>
+    <script src="Static/Scripts/model.js"></script>
+    <script src="Static/Scripts/cardSuit.js"></script>
+    <script src="Static/Scripts/cardType.js"></script>
+    <script src="Static/Scripts/card.js"></script>
+    <script src="Static/Scripts/cardDesk.js"></script>
+    <script src="Static/Scripts/cardBuilder.js"></script>
+    <script src="Static/Scripts/cardCreator.js"></script>
+    <script src="Static/Scripts/runner.js"></script>
 </body>
 </html>

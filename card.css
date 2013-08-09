@@ -4,7 +4,7 @@
     clear: both;
 }
 .avatar {
-    float: left;
+    float: right;
 }
 .title {
     width: 100%;
@@ -13,36 +13,24 @@
     position: absolute;
 }
 .cardDesk-container {
-    width: 100px;
-    height: 200px;
-    position: relative;
+    width: 178px;
+    height: 259px;
     float: left;
+    position: relative;
 }
 
 .card-container {
-    width: 100px;
-    height: 200px;
-}
-.cardInCardDesk {
+    width: 178px;
+    height: 259px;
     position: absolute;
 }
 .card-face {
-    width: 50%;
-    height: 50%;
-    background: red;
+    width: 100%;
+    height: 100%;
     position: absolute;
 }
 .card-shirt {
-    width: 50%;
-    height: 50%;
-    background: green;
+    width: 100%;
+    height: 100%;
     position: absolute;
-}
-.leftTop20px {
-    left: 10%;
-    top: 10%;
-}
-.leftTop40px {
-    left: 20%;
-    top: 20%;
 }

@@ -8,6 +8,7 @@
      * @constructor
      */
     var Card = function (params) {
+        params = params || {};
         Model.call(this, params);
     };
     Card.prototype = Object.create(Model.prototype, {
@@ -18,6 +19,9 @@
             configurable: true
         }
     });
+    Card.prototype.bind = function (control) {
+        this.control = control;
+    };
     /**
      * Функция определяет какая из карт больше (-1 - первая, 0 равны, 1 - вторая)
      * @param otherCard Card - карта с которой произодится сравнение

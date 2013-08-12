@@ -2,24 +2,26 @@
     "use strict";
     /**
      * Объект моделирует карточную колоду
-     * @param params Object
      * @constructor
      * @field cards {Card[]} массив карт
+     * @field onPush {EventJs} событие добавления карты в колоду
+     * @field onPop {EventJs} событие изъятия карты из колоды
+     * @field cards {Card[]} массив карт
      */
-    var CardDesk = function (params) {
-        params.cards = params.cards || [];
-        this.prototype.call(this, params);
+    var CardDesk = function () {
+        this.cards =  [];
+        this.onPop = new EventJs();
+        this.onPush = new EventJs();
     },
         allCardTypes,
         allCardSuits,
         allCards;
-    CardDesk.prototype = Object.create(Model.prototype, {
-        constructor: {
-            value: CardDesk,
-            enumerable: false,
-            writable: true,
-            configurable: true
-        }});
+    CardDesk.prototype.bind = function(control) {
+        this.control = control;
+        this.onPush.bind(control.push, control);
+        this.onPop.bind(control.pop, control);
+    };
+
     /**
      * Метод проверяет есть ли карты в колоде
      * @returns {boolean}
@@ -37,29 +39,67 @@
         }
         return this.cards.shift();
     };
-    /**
-     * Добавляем карты под колоду
-     * @param otherObject {Card[]|CardDesk} карты или колода карт, которые нужно положить под низ
-     */
-    CardDesk.prototype.adds = function (otherObject) {
-        var cards = [];
-        if (Array.isArray(otherObject)) {
-            cards = otherObject;
+    CardDesk.prototype.push = function (card) {
+        this.cards.push(card);
+        this.onPush.on(card);
+    };
+    CardDesk.prototype.add = function (cards) {
+        var self = this;
+        cards.forEach(function(card) {
+            self.push(card);
+        })
+    };
+    CardDesk.prototype.empty = function () {
+        var removed= this;
+        cards.forEach(function(card) {
+            self.push(card);
+        })
+    };
+    CardDesk.prototype.peek = function () {
+        return this.cards.peek();
+    };
+    CardDesk.prototype.pop = function () {
+        var returnedCard = this.cards.pop();
+        if (!returnedCard) {
+            return;
         }
-        if (Array instanceof CardDesk) {
-            cards = otherObject.cards;
-        }
-        this.cards = this.cards.concat(cards);
+        this.onPop.on(returnedCard);
+        return returnedCard;
     };
     function getRandomInt(min, max)
     {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     /**
-     * Перемешать
+     * Перемешать карточную колоду.
      */
     CardDesk.prototype.mix = function () {
+        var from, to, temp;
+        for(from = 0; from < this.cards.length; from +=1) {
+            to = getRandomInt(0, this.cards.length - 1);
 
+            temp = this.cards[from];
+            this.cards[from] = this.cards[to];
+            this.cards[to] = temp;
+        }
+    };
+
+    CardDesk.prototype.divide = function (divisor) {
+        var intCount = Math.floor(this.cards.length / divisor),
+            extraCards = this.cards.length - intCount*divisor,
+            result = [],
+            start = 0,
+            count = 0,
+            currentCards,
+            i;
+
+        for(i = 0; i < divisor; i +=1 ) {
+            count = extraCards <= i? intCount+1: intCount; //В первые колоды попадают лишние карты
+            currentCards = this.cards.slice(start, start + count);
+            result.push(currentCards);
+            start += count;
+        }
+        return result;
     };
     /**
      * Находим индексы максимальных карт
@@ -70,6 +110,7 @@
             maxs = [];
         this.cards.forEach(function (index) {
             var compareResult = maxCard.compare(this);
+
             if (compareResult === 1) {
                 maxCard = this;
                 maxs = [index];
@@ -119,7 +160,9 @@
 
 
     CardDesk.getCardDesk52 = function () {
-        return allCards;
+        var newCardDesk = new CardDesk();
+        newCardDesk.add(allCards);
+        return newCardDesk;
     };
 
     toExport.CardDesk = CardDesk;

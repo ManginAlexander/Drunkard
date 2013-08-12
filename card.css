@@ -17,6 +17,7 @@
     height: 259px;
     float: left;
     position: relative;
+    padding: 10px;
 }
 
 .card-container {

@@ -16,7 +16,7 @@
         name: "Бубни"
     });
     CardSuit.Clubs  = new CardSuit({
-        name: "Дама"
+        name: "Крести"
     });
     CardSuit.Spades  = new CardSuit({
         name: "Пика"

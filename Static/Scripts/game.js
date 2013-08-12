@@ -2,8 +2,18 @@
     "use strict";
     var Game = function (params) {
         this.activePlaying = params.activePlaying || [];
+        this.currentRound = null;
     };
-    Game.prototype.start = function() {
+    Game.prototype.next = function() {
+        if (this.activePlaying < 1) {
+            console.log("Игре пришел конец");
+            return;
+        }
+        if (this.currentRound) {
+            this.currentRound.continue();
+        } else {
+
+        }
         while(this.activePlaying.length > 1) {
             var round = new Round();
             round.start(this.activePlaying, false);

@@ -18,28 +18,18 @@
         console.log(coordinateToString.call(faceLocation));
         $(".card-face", $newCardContainer)
             .css("background-image", this.backgroundImageValue)
-            .css("background-position", coordinateToString.call(faceLocation));
+            .css("background-position", coordinateToString.call(faceLocation))
+            .css("left", function(index) {return index*10})
+            .css("top", function(index) {return index*10})
         $(".card-shirt", $newCardContainer)
             .css("background-image", this.backgroundImageValue)
-            .css("background-position", coordinateToString.call(suitsLocation));
+            .css("background-position", coordinateToString.call(suitsLocation))
+            .css("left", function(index) {return index*5})
+            .css("top", function(index) {return index*5})
         return $newCardContainer;
     };
-    CardCreator.prototype.createCardDesk = function (cardModels) {
-        var $newCardDeskContainer = this.$cardDeskTemplateElement.clone(),
-            self = this;
-        cardModels.forEach(function(cardModel) {
-            var newCard = self.createCard(cardModel)
-            $newCardDeskContainer.append(newCard);
-        });
-
-        $(".card-container", $newCardDeskContainer)
-            .css("left", function(index){
-                    return index ;
-            })
-            .css("top", function(index){
-                return index;
-            });
-        return $newCardDeskContainer;
+    CardCreator.prototype.createCardDesk = function () {
+        return this.$cardDeskTemplateElement.clone();
     };
     toExport.CardCreator = CardCreator;
 }(window));

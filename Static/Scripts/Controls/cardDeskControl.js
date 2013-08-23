@@ -20,8 +20,14 @@
             }
             else if (this.openMod === "nothing" && cardControl.isFaceVisible) {
                 cardControl.switchFaceAndShirt();
-            }
-    };
+        }},
+        recalculateRelativePosition = function() {
+            this.forEach(function(cardControl, index) {
+                cardControl.$card.css("left", index);
+                cardControl.$card.css("top", index);
+            });
+        };
+
 
     CardDeskControl.prototype.push = function(cardModel) {
         var cardControl = cardModel.control;
@@ -34,8 +40,19 @@
         this.$cardDesk.append(cardControl.$card);
     };
 
+    CardDeskControl.prototype.unshift = function(cardModel) {
+        var cardControl = cardModel.control;
+        applyOpenMode.call(this, cardControl);
+        this.cardsControls.unshift(cardControl);
+        recalculateRelativePosition.call(this.cardsControls);
+
+        this.$cardDesk.prepend(cardControl.$card);
+    };
+
     CardDeskControl.prototype.pop = function() {
-        return this.cardsControls.pop();
+        var returnedCard = this.cardsControls.pop();
+        returnedCard.$card.remove();
+        return returnedCard;
     };
 
     toExport.CardDeskControl = CardDeskControl;

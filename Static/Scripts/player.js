@@ -18,15 +18,17 @@
         if (battleCard) {
             this.battleCardDesk.push(battleCard);
         }
-    }
+    };
     Player.prototype.takeBattlePrize = function (players) {
-        var self = this;
+        var self = this,
+            bitPrize;
         players.forEach(function(player){
-            while (!player.battleCardDesk.isEmpty) {
-                self.playerCardDesk.push(player.battleCardDesk.pop());
+            while (!player.battleCardDesk.isEmpty()) {
+                bitPrize = player.battleCardDesk.pop();
+                self.playerCardDesk.unshift(bitPrize);
             }
         })
-    }
+    };
     Player.getWinners = function (players) {
         var maxPower;
         if (players.length === 0) {
@@ -44,7 +46,7 @@
         return players.filter(function(player){
             return player.battleCardDesk.peek().type.power === maxPower;
         });
-    }
+    };
 
     toExport.Player = Player;
 }(window));

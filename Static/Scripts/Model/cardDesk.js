@@ -3,15 +3,17 @@
     /**
      * Объект моделирует карточную колоду
      * @constructor
-     * @field cards {Card[]} массив карт
-     * @field onPush {EventJs} событие добавления карты в колоду
-     * @field onPop {EventJs} событие изъятия карты из колоды
-     * @field cards {Card[]} массив карт
+     * @field cards {Card[]} массив карт.
+     * @field onPush {EventJs} событие добавления карты в колоду.
+     * @field onPop {EventJs} событие изъятия карты из колоды.
+     * @field onShift {EventJs} событие добавление карты под низ колоды.
+     * @field cards {Card[]} массив карт.
      */
     var CardDesk = function () {
         this.cards =  [];
         this.onPop = new EventJs();
         this.onPush = new EventJs();
+        this.onUnshift = new EventJs();
     },
         allCardTypes,
         allCardSuits,
@@ -20,6 +22,7 @@
         this.control = control;
         this.onPush.bind(control.push, control);
         this.onPop.bind(control.pop, control);
+        this.onUnshift.bind(control.unshift, control);
     };
 
     /**
@@ -29,32 +32,26 @@
     CardDesk.prototype.isEmpty = function () {
         return this.cards.length === 0;
     };
-    /**
-     * Пытаемся достать из колоды следующую карту
-     * @returns {Card}
-     */
-    CardDesk.prototype.tryGetNextCard = function () {
-        if (this.isEmpty) {
-            return null;
-        }
-        return this.cards.shift();
-    };
     CardDesk.prototype.push = function (card) {
         this.cards.push(card);
         this.onPush.on(card);
     };
-    CardDesk.prototype.add = function (cards) {
+    CardDesk.prototype.unshift = function (card) {
+        this.cards.unshift(card);
+        this.onUnshift.on(card);
+    };
+
+    CardDesk.prototype.add = function (cards, isUnderDesk) {
         var self = this;
         cards.forEach(function(card) {
-            self.push(card);
+            if (isUnderDesk) {
+                self.shift(card);
+            } else {
+                self.push(card);
+            }
         })
     };
-    CardDesk.prototype.empty = function () {
-        var removed= this;
-        cards.forEach(function(card) {
-            self.push(card);
-        })
-    };
+
     CardDesk.prototype.peek = function () {
         return this.cards.peek();
     };
@@ -100,26 +97,6 @@
             start += count;
         }
         return result;
-    };
-    /**
-     * Находим индексы максимальных карт
-     * @returns {number[]}
-     */
-    CardDesk.prototype.getIndexWithMax= function () {
-        var maxCard = Card.prototype.Empty,
-            maxs = [];
-        this.cards.forEach(function (index) {
-            var compareResult = maxCard.compare(this);
-
-            if (compareResult === 1) {
-                maxCard = this;
-                maxs = [index];
-            }
-            if (compareResult === 0) {
-                maxs.push(index);
-            }
-        });
-        return maxs;
     };
 
     allCardTypes = [CardType.Two,

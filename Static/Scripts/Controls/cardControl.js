@@ -1,3 +1,4 @@
+/*global window: false, $: false*/
 (function (toExport) {
     "use strict";
     var CardControl = function (options) {
@@ -9,14 +10,14 @@
         this.$face = $(".card-face:first", this.$card);
         this.$shirt = $(".card-shirt:first", this.$card);
     };
-    CardControl.prototype.showFace = function() {
+    CardControl.prototype.showFace = function () {
         if (!this.isFaceVisible) {
             this.$shirt.hide();
             this.$face.show();
             this.isFaceVisible = true;
         }
     };
-    CardControl.prototype.showShirt = function() {
+    CardControl.prototype.showShirt = function () {
         if (this.isFaceVisible) {
             this.$shirt.show();
             this.$face.hide();

@@ -1,4 +1,5 @@
-(function(toExport) {
+/*global Model:false, window:false*/
+(function (toExport) {
     "use strict";
     /**
      * Модель карты
@@ -26,7 +27,7 @@
      * Функция определяет какая из карт больше (-1 - первая, 0 равны, 1 - вторая)
      * @param otherCard Card - карта с которой произодится сравнение
      */
-    Card.prototype.compare = function(otherCard) {
+    Card.prototype.compare = function (otherCard) {
         return this.type.compare(otherCard.type);
     };
     toExport.Card = Card;

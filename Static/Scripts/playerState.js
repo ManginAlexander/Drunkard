@@ -1,3 +1,4 @@
+/*global window:false*/
 (function (toExport) {
     "use strict";
     var PlayerState = function () {

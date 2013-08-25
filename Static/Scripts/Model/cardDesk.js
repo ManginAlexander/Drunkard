@@ -1,3 +1,9 @@
+/*global window:false,
+ EventJs:false,
+ CardSuit:false,
+ CardType:false,
+ Card:false
+*/
 (function (toExport) {
     "use strict";
     /**
@@ -18,7 +24,7 @@
         allCardTypes,
         allCardSuits,
         allCards;
-    CardDesk.prototype.bind = function(control) {
+    CardDesk.prototype.bind = function (control) {
         this.control = control;
         this.onPush.bind(control.push, control);
         this.onPop.bind(control.pop, control);
@@ -43,13 +49,13 @@
 
     CardDesk.prototype.add = function (cards, isUnderDesk, isShowFace) {
         var self = this;
-        cards.forEach(function(card) {
+        cards.forEach(function (card) {
             if (isUnderDesk) {
                 self.unshift(card, isShowFace);
             } else {
                 self.push(card, isShowFace);
             }
-        })
+        });
     };
 
     CardDesk.prototype.peek = function () {
@@ -63,8 +69,7 @@
         this.onPop.on(returnedCard, isShowFace);
         return returnedCard;
     };
-    function getRandomInt(min, max)
-    {
+    function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     /**
@@ -72,7 +77,7 @@
      */
     CardDesk.prototype.mix = function () {
         var from, to, temp;
-        for(from = 0; from < this.cards.length; from +=1) {
+        for (from = 0; from < this.cards.length; from += 1) {
             to = getRandomInt(0, this.cards.length - 1);
 
             temp = this.cards[from];
@@ -83,14 +88,14 @@
 
     CardDesk.prototype.divide = function (divisor) {
         var intCount = Math.floor(this.cards.length / divisor),
-            countPlayerWithExtraCard = this.cards.length - intCount*divisor,
+            countPlayerWithExtraCard = this.cards.length - intCount * divisor,
             result = [],
             start = 0,
             count = 0,
             currentCards,
             i;
 
-        for(i = 0; i < divisor; i +=1 ) {
+        for (i = 0; i < divisor; i += 1) {
             count = i < countPlayerWithExtraCard ? intCount + 1 : intCount; //В первые колоды попадают лишние карты
             currentCards = this.cards.slice(start, start + count);
             result.push(currentCards);
@@ -99,34 +104,35 @@
         return result;
     };
 
-    allCardTypes = [CardType.Two,
-            CardType.Three,
-            CardType.Four,
-            CardType.Five,
-            CardType.Six,
-            CardType.Seven,
-            CardType.Eight,
-            CardType.Nine,
-            CardType.Ten,
-            CardType.Jack,
-            CardType.Queen,
-            CardType.King,
-            CardType.Ace
-        ];
+    allCardTypes = [
+        CardType.Two,
+        CardType.Three,
+        CardType.Four,
+        CardType.Five,
+        CardType.Six,
+        CardType.Seven,
+        CardType.Eight,
+        CardType.Nine,
+        CardType.Ten,
+        CardType.Jack,
+        CardType.Queen,
+        CardType.King,
+        CardType.Ace
+    ];
     allCardSuits = [
-            CardSuit.Hearts,
-            CardSuit.Diamonds,
-            CardSuit.Clubs,
-            CardSuit.Spades
-        ];
+        CardSuit.Hearts,
+        CardSuit.Diamonds,
+        CardSuit.Clubs,
+        CardSuit.Spades
+    ];
     allCards = [];
-    allCardSuits.forEach(function(cardSuit) {
-        allCardTypes.forEach(function(cardType){
+    allCardSuits.forEach(function (cardSuit) {
+        allCardTypes.forEach(function (cardType) {
             allCards.push(new Card({
                 type: cardType,
                 suit: cardSuit
-            }))
-        })
+            }));
+        });
     });
     allCards.push(new Card({
         type: CardType.RedJoker

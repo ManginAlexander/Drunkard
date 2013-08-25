@@ -1,4 +1,5 @@
-(function(toExport) {
+/*global window:false*/
+(function (toExport) {
     "use strict";
     /**
      * Масти карт
@@ -8,7 +9,7 @@
      */
     var CardSuit = function (options) {
         this.name = options.name;
-        };
+    };
     CardSuit.Hearts = new CardSuit({
         name: "Черви"
     });

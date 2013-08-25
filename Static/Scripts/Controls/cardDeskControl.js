@@ -1,3 +1,4 @@
+/*global window: false*/
 (function (toExport) {
     "use strict";
     var CardDeskControl = function (options) {
@@ -11,15 +12,15 @@
         $container.append(this.$cardDesk);
 
     },
-        recalculateRelativePosition = function() {
-            this.forEach(function(cardControl, index) {
+        recalculateRelativePosition = function () {
+            this.forEach(function (cardControl, index) {
                 cardControl.$card.css("left", index);
                 cardControl.$card.css("top", index);
             });
         };
 
 
-    CardDeskControl.prototype.push = function(cardModel, isShowFace) {
+    CardDeskControl.prototype.push = function (cardModel, isShowFace) {
         var cardControl = cardModel.control;
         if (isShowFace) {
             cardControl.showFace();

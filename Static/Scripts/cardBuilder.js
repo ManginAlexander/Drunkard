@@ -1,3 +1,4 @@
+/*global CardType:false*/
 (function (toExport) {
     "use strict";
     var cardWidth = 179,
@@ -10,7 +11,8 @@
                 x: (column - 1) * (cardWidth + space),
                 y: (row - 1) * (cardHeight + space)
             };
-        }, CardBuilder;
+        },
+        CardBuilder;
     orderCardsColumn[CardType.Ace.name] = 1;
     orderCardsColumn[CardType.Two.name] = 2;
     orderCardsColumn[CardType.Three.name] = 3;

@@ -1,10 +1,11 @@
+/*global window: false*/
 (function (toExport) {
     "use strict";
     var EventJs = function () {
         this.handlersModels = [];
-        };
-    EventJs.prototype.bind = function(handler, context) {
-        this.handlersModels .push({
+    };
+    EventJs.prototype.bind = function (handler, context) {
+        this.handlersModels.push({
             handler: handler,
             context: context
         });

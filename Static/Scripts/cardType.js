@@ -1,4 +1,5 @@
-(function(toExport) {
+/*global window:false*/
+(function (toExport) {
     "use strict";
     /**
      * Типы карт
@@ -10,12 +11,12 @@
     var CardType = function (options) {
         this.name = options.name;
         this.power = options.power;
-        };
-    CardType.prototype.compare = function(otherCardType) {
+    };
+    CardType.prototype.compare = function (otherCardType) {
         if (this.power === otherCardType.power) {
             return 0;
         }
-        return this.power > otherCardType.power ? -1: 1;
+        return this.power > otherCardType.power ? -1 : 1;
     };
     CardType.RedJoker = new CardType({
         name: "Красный Джокер",

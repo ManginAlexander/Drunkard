@@ -1,3 +1,12 @@
+/*global window: false, setInterval:false, clearInterval:false,
+ $:false,
+ CardCreator:false,
+ CardDesk:false,
+ CardDeskControl:false,
+ CardControl:false,
+ Player:false,
+ GameManager:false
+*/
 (function (toExport) {
     "use strict";
     var DrunkardControl = function (options) {
@@ -10,27 +19,28 @@
             mapFile: "cards.jpg"
         });
         this.players = [];
-        },
-        initOnePlayer = function(cards){
+    },
+        initOnePlayer = function (cards) {
             var playerCardDesk = new CardDesk(),
                 playerCardDescControl = new CardDeskControl({
                     cardDeskModel: playerCardDesk,
                     $container: this.$playerCardDescContainer,
                     cardCreator: this.cardCreator,
-                    number: this.players.length+1
+                    number: this.players.length + 1
                 }),
                 battleCardDesk = new CardDesk(),
                 battleCardDescControl = new CardDeskControl({
                     cardDeskModel: battleCardDesk,
                     $container: this.$battleCardDesks,
                     cardCreator: this.cardCreator,
-                    number: this.players.length+1
-                }),self = this;
-            cards.forEach(function(cardModel) {
-                new CardControl({
+                    number: this.players.length + 1
+                }),
+                self = this;
+            cards.forEach(function (cardModel) {
+                var cardControl = new CardControl({
                     cardCreator: self.cardCreator,
                     cardModel: cardModel
-                })
+                });
             });
             playerCardDesk.add(cards);
             this.players.push(new Player({
@@ -39,15 +49,15 @@
                 battleCardDesk: battleCardDesk
             }));
     };
-    DrunkardControl.prototype.startPlay = function(cardDesk, needMix, countPlayer, speed, onEndGame) {
+    DrunkardControl.prototype.startPlay = function (cardDesk, needMix, countPlayer, speed, onEndGame) {
         var gameManager,
             intervalId,
             self = this;
         if (needMix) {
             cardDesk.mix();
         }
-        cardDesk.divide(countPlayer).forEach(function(cards){
-            initOnePlayer.call(self, cards)
+        cardDesk.divide(countPlayer).forEach(function (cards) {
+            initOnePlayer.call(self, cards);
         });
         gameManager = new GameManager({
             players: this.players

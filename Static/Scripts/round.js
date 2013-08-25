@@ -1,9 +1,7 @@
 (function (toExport) {
     "use strict";
-    var Round = function () {
+    toExport.Round = function () {
         this.state = RoundState.Start;
         this.winners = [];
     };
-
-    toExport.Round = Round;
 }(window));

@@ -4,9 +4,9 @@
 
     };
 
-    PlayerState.Leave = new PlayerState();
-    PlayerState.ActiveInRounnd = new PlayerState();
-    PlayerState.Loser = new PlayerState();
+    PlayerState.GameOver = new PlayerState();
+    PlayerState.DontActiveInRound = new PlayerState();
+    PlayerState.ActiveInRound = new PlayerState();
 
     toExport.PlayerState = PlayerState;
 }(window));

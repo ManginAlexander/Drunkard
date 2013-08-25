@@ -9,15 +9,19 @@
         this.$face = $(".card-face:first", this.$card);
         this.$shirt = $(".card-shirt:first", this.$card);
     };
-    CardControl.prototype.switchFaceAndShirt = function() {
-        if (this.isFaceVisible) {
-            this.$face.hide();
-            this.$shirt.show();
-        } else {
+    CardControl.prototype.showFace = function() {
+        if (!this.isFaceVisible) {
             this.$shirt.hide();
             this.$face.show();
+            this.isFaceVisible = true;
         }
-        this.isFaceVisible = !this.isFaceVisible;
+    };
+    CardControl.prototype.showShirt = function() {
+        if (this.isFaceVisible) {
+            this.$shirt.show();
+            this.$face.hide();
+            this.isFaceVisible = false;
+        }
     };
     toExport.CardControl = CardControl;
 }(window));

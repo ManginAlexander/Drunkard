@@ -1,4 +1,4 @@
-(function (toExport) {
+(function () {
     "use strict";
     if (!Array.prototype.peek) {
         Array.prototype.peek = function () {
@@ -9,4 +9,4 @@
             return undefined;
         }
     }
-}(window));
+}());

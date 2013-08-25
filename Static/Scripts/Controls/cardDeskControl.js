@@ -5,22 +5,12 @@
             $container = options.$container,
             cardDeskModel = options.cardDeskModel || new CardDesk();
         this.cardsControls = [];
-        this.openMod = options.openMod;
-        this.$cardDesk = cardCreator.createCardDesk();
+        this.$cardDesk = cardCreator.createCardDesk(options.number);
 
         cardDeskModel.bind(this);
         $container.append(this.$cardDesk);
 
     },
-        applyOpenMode = function (cardControl) {
-            if (!this.openMod || this.openMod === "hand") { return; }
-
-            if (this.openMod === "all" && !cardControl.isFaceVisible) {
-                cardControl.switchFaceAndShirt();
-            }
-            else if (this.openMod === "nothing" && cardControl.isFaceVisible) {
-                cardControl.switchFaceAndShirt();
-        }},
         recalculateRelativePosition = function() {
             this.forEach(function(cardControl, index) {
                 cardControl.$card.css("left", index);
@@ -29,9 +19,13 @@
         };
 
 
-    CardDeskControl.prototype.push = function(cardModel) {
+    CardDeskControl.prototype.push = function(cardModel, isShowFace) {
         var cardControl = cardModel.control;
-        applyOpenMode.call(this, cardControl);
+        if (isShowFace) {
+            cardControl.showFace();
+        } else {
+            cardControl.showShirt();
+        }
         this.cardsControls.push(cardControl);
         cardControl.$card
             .css("left", this.cardsControls.length)
@@ -40,17 +34,26 @@
         this.$cardDesk.append(cardControl.$card);
     };
 
-    CardDeskControl.prototype.unshift = function(cardModel) {
+    CardDeskControl.prototype.unshift = function(cardModel, isShowFace) {
         var cardControl = cardModel.control;
-        applyOpenMode.call(this, cardControl);
+        if (isShowFace) {
+            cardControl.showFace();
+        } else {
+            cardControl.showShirt();
+        }
         this.cardsControls.unshift(cardControl);
         recalculateRelativePosition.call(this.cardsControls);
 
         this.$cardDesk.prepend(cardControl.$card);
     };
 
-    CardDeskControl.prototype.pop = function() {
+    CardDeskControl.prototype.pop = function(isShowFace) {
         var returnedCard = this.cardsControls.pop();
+        if (isShowFace) {
+            returnedCard.showFace();
+        } else {
+            returnedCard.showShirt();
+        }
         returnedCard.$card.remove();
         return returnedCard;
     };

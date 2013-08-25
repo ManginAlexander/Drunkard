@@ -32,22 +32,22 @@
     CardDesk.prototype.isEmpty = function () {
         return this.cards.length === 0;
     };
-    CardDesk.prototype.push = function (card) {
+    CardDesk.prototype.push = function (card, isShowFace) {
         this.cards.push(card);
-        this.onPush.on(card);
+        this.onPush.on(card, isShowFace);
     };
-    CardDesk.prototype.unshift = function (card) {
+    CardDesk.prototype.unshift = function (card, isShowFace) {
         this.cards.unshift(card);
-        this.onUnshift.on(card);
+        this.onUnshift.on(card, isShowFace);
     };
 
-    CardDesk.prototype.add = function (cards, isUnderDesk) {
+    CardDesk.prototype.add = function (cards, isUnderDesk, isShowFace) {
         var self = this;
         cards.forEach(function(card) {
             if (isUnderDesk) {
-                self.shift(card);
+                self.unshift(card, isShowFace);
             } else {
-                self.push(card);
+                self.push(card, isShowFace);
             }
         })
     };
@@ -55,12 +55,12 @@
     CardDesk.prototype.peek = function () {
         return this.cards.peek();
     };
-    CardDesk.prototype.pop = function () {
+    CardDesk.prototype.pop = function (isShowFace) {
         var returnedCard = this.cards.pop();
         if (!returnedCard) {
-            return;
+            return undefined;
         }
-        this.onPop.on(returnedCard);
+        this.onPop.on(returnedCard, isShowFace);
         return returnedCard;
     };
     function getRandomInt(min, max)
@@ -83,7 +83,7 @@
 
     CardDesk.prototype.divide = function (divisor) {
         var intCount = Math.floor(this.cards.length / divisor),
-            extraCards = this.cards.length - intCount*divisor,
+            countPlayerWithExtraCard = this.cards.length - intCount*divisor,
             result = [],
             start = 0,
             count = 0,
@@ -91,7 +91,7 @@
             i;
 
         for(i = 0; i < divisor; i +=1 ) {
-            count = extraCards <= i? intCount+1: intCount; //В первые колоды попадают лишние карты
+            count = i < countPlayerWithExtraCard ? intCount + 1 : intCount; //В первые колоды попадают лишние карты
             currentCards = this.cards.slice(start, start + count);
             result.push(currentCards);
             start += count;

@@ -1,3 +1,8 @@
+body {
+    font-size: 141%;
+    font-family: Arial,sans-serif;
+    font-style: normal;
+}
 /*Стили lightbox*/
 .lightbox_background {
     z-index:9;
@@ -16,61 +21,73 @@
 }
 .lightbox_content {
     z-index: 10;
-    position:relative;
-    width:600px;
-    height:300px;
-    left: -300px;
-    top: -150px;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    width:1100px;
+    height: 200px;
+    margin: auto;
+    text-align: center;
     background:#fff;
     overflow: hidden;
-
 }
 .lightbox_content_header {
     text-align: center;
-    height: 50px;
-    position: absolute;
+    position: relative;
+    margin: 10px auto;
+    font-weight: bold;
+    font-size: 181%;
 }
 .lightbox_content_center {
-    padding: 50px 0px;
-    height: 100%;
-    position: relative;
+    margin: auto;
+    width: 80%;
 }
 .lightbox_content_footer {
     clear: both;
-    height: 50px;
     width: 100%;
     bottom: 0;
     position: absolute;
 }
 .lightbox_content_column {
-
     float:left;
     margin: 10px;
 }
 .big_button {
     width: 100%;
     height: 100%;
+    padding: 10px;
 }
 /*Стили самой игры*/
 .row {
-    position: relative;
+    padding-bottom: 350px;
     clear: both;
-}
-.avatar {
-    float: right;
 }
 .title {
     width: 100%;
     height: 100%;
+    font-weight: bolder;
     text-align: center;
-    position: absolute;
 }
 .cardDesk-container {
+    margin: 10px;
     width: 178px;
     height: 259px;
     float: left;
     position: relative;
     padding: 10px;
+}
+.cardDesk-number {
+    z-index: -1;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin: auto;
 }
 
 .card-container {

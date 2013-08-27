@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="card.css">
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <div class="lightbox_background">
+        <div class="lightbox_content finish-lightbox">
+            <div class="lightbox_content_header">
+
+            </div>
+            <div class="lightbox_content_footer">
+                <input class="big_button finishButton" type="button" value="Еще разок?">
+            </div>
+        </div>
+        <div class="lightbox_content start-lightbox">
+            <div class="lightbox_content_header">
+                Игра Пьяница
+            </div>
+            <div class="lightbox_content_center">
+                <div class="lightbox_content_column">
+                    Тест:
+                    <div>
+                        <select class="dealer_cardDeskSwitcher">
+                            <option>Пункт 1</option>
+                            <option>Пункт 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="lightbox_content_column">
+                    Количество игроков:
+                    <div>
+                        <select class ="dealer_countPlayer">
+                            <option>Пункт 1</option>
+                            <option>Пункт 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="lightbox_content_column">
+                    Перемешать?
+                    <div class ="dealer_isMix">
+                        <input type="checkbox"/>
+                    </div>
+                </div>
+                <div class="lightbox_content_column">
+                    Скорость игры
+                    <div>
+                        <select class ="dealer_speed">
+                            <option value="1">Быстрая</option>
+                            <option value="2" selected="selected">Нормальная</option>
+                            <option value="3">Медленная</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="lightbox_content_footer">
+                <input class="big_button startButton" type="button" value="Поехали">
+            </div>
+        </div>
+    </div>
+    <div class= "cardDesk-container">
+
+    </div>
+    <div class="card-container">
+        <div class="card-face"></div>
+        <div class="card-shirt"></div>
+    </div>
+
+    <div class="playerCardDesks row">
+        <div class="title">
+            Карты игроков
+        </div>
+    </div>
+    <div class="battleCardDesks row">
+        <div class="title">
+            Поле битвы игроков
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <script src="http://yandex.st/jquery/2.0.3/jquery.js"></script>
+    <script src="Static/Scripts/Extantion/arrayExt.js"></script>
+    <script src="Static/Lib/eventJs.js"></script>
+    <script src="Static/Lib/myLib.js"></script>
+    <script src="Static/Scripts/model.js"></script>
+    <script src="Static/Scripts/cardSuit.js"></script>
+    <script src="Static/Scripts/cardType.js"></script>
+    <script src="Static/Scripts/Model/card.js"></script>
+    <script src="Static/Scripts/Model/cardDesk.js"></script>
+    <script src="Static/Scripts/player.js"></script>
+    <script src="Static/Scripts/playerState.js"></script>
+    <script src="Static/Scripts/gameManager.js"></script>
+    <script src="Static/Scripts/round.js"></script>
+    <script src="Static/Scripts/roundState.js"></script>
+
+    <script src="Static/Scripts/cardBuilder.js"></script>
+    <script src="Static/Scripts/cardCreator.js"></script>
+    <script src="Static/Scripts/Controls/cardControl.js"></script>
+    <script src="Static/Scripts/Controls/cardDeskControl.js"></script>
+    <script src="Static/Scripts/Controls/drunkardControl.js"></script>
+
+    <script src="Static/Scripts/dealerResult.js"></script>
+    <script src="Static/Scripts/dealer.js"></script>
+    <script src="Static/Scripts/cardCreator.js"></script>
+    <script src="Static/Scripts/runner.js"></script>
+</body>
+</html>
